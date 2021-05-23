@@ -3,6 +3,9 @@ name: Checkout-SVN
 on:
   schedule:
     - cron: "*/30 * * * *"
+  push:
+    branches:
+      - master
 
 jobs:
   checkout-SVN:
@@ -26,7 +29,7 @@ jobs:
         run: |
           git svn init https://dev.geogebra.org/svn/trunk/geogebra/giac/src/giac/
           git svn fetch
-      - name: Pull
+      - name: Pull repo # in case of someone updated repo during svn fetch ...
         run: git pull
       - name: Push new changes
         run: git push
