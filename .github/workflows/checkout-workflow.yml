@@ -26,5 +26,7 @@ jobs:
         run: |
           git svn init https://dev.geogebra.org/svn/trunk/geogebra/giac/src/giac/
           git svn fetch
+      - name: Pull
+        run: git pull
       - name: Push new changes
         run: git push
