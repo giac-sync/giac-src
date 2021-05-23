@@ -1,0 +1,30 @@
+name: Checkout-SVN
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  checkout-SVN:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Remove old previous version
+      #   run: rm -rf .npmignore .git && rm -rf *
+      # - name: Add universe repo
+      #   run: sudo add-apt-repository universe
+      - name: Install git-svn
+        run: sudo add-apt-repository ppa:git-core/ppa && sudo apt-get update && sudo apt-get install git-svn
+      - name: Config git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - name: Checkout & Fetch SVN
+        run: |
+          git svn init https://dev.geogebra.org/svn/trunk/geogebra/giac/src/giac/
+          git svn fetch
+      - name: Push new changes
+        run: git push
