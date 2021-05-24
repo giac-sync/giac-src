@@ -2,10 +2,8 @@ name: Checkout-SVN
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
-  push:
-    branches:
-      - master
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
 
 jobs:
   checkout-SVN:
