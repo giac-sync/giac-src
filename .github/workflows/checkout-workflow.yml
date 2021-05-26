@@ -23,12 +23,12 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - name: Checkout & Fetch SVN
+      - name: Setup SVN
         run: |
           git svn init https://dev.geogebra.org/svn/trunk/geogebra/giac/src/giac/
           git update-ref refs/remotes/git-svn refs/remotes/origin/master
-          git svn fetch
-          git svn rebase
+      - name: Pull SVN
+        run: git svn rebase
       - name: Pull repo # in case of someone updated repo during svn fetch ...
         run: git pull
       - name: Push new changes
