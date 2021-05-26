@@ -26,6 +26,7 @@ jobs:
       - name: Checkout & Fetch SVN
         run: |
           git svn init https://dev.geogebra.org/svn/trunk/geogebra/giac/src/giac/
+          git update-ref refs/remotes/git-svn refs/remotes/origin/master
           git svn fetch
           git svn rebase
       - name: Pull repo # in case of someone updated repo during svn fetch ...
