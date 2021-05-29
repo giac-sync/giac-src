@@ -1,2 +1,0 @@
-# GIAC Source Mirror
-
